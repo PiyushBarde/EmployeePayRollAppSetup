@@ -32,4 +32,8 @@ public class GreetingService {
 		EmployeeModel newEmployeeModel = new EmployeeModel(id,employee); 
 		return newEmployeeModel;
 	}
+
+	public void deleteEmployee(Integer id) {
+		repo.deleteById(id);
+	}
 }
