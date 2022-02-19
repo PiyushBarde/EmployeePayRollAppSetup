@@ -9,10 +9,16 @@ public class WelcomeGreeting {
 	this.id = id;
 	this.content = content;
 	}
+ 
 
 public Integer getId() {
 	return id;
 }
+
+public WelcomeGreeting() {
+	super();
+}
+
 
 public void setId(Integer id) {
 	this.id = id;

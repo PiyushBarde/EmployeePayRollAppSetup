@@ -2,7 +2,15 @@ package com.bridgelabz.employeepayrollsetup.employeemodel;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+
+@Entity
 public class EmployeeModel {
+	@Id
+	@GeneratedValue
 	private Integer id;
 	private String firstName;
 	private String lastName;
@@ -12,20 +20,22 @@ public class EmployeeModel {
     private LocalDate date;
     private String notes;
     
-
-
-	public EmployeeModel(EmployeeModel employee) {
+    
+    public EmployeeModel() {
 		super();
-		this.firstName = employee.getFirstName();
-		this.lastName = employee.getLastName();
 	}
 
-
-	public EmployeeModel(Integer id, EmployeeModel employee) {
+    
+	public EmployeeModel(Integer id, EmployeeModel employee,String operation) {
 		super();
-		this.id = employee.id;
+		this.id = id;
 		this.firstName = employee.getFirstName();
-		this.lastName = employee.getLastName();;
+		this.lastName = employee.getLastName();
+		this.profilepic = employee.getLastName();
+		this.department = employee.getDepartment();
+		this.salary = employee.getSalary();
+		this.date = employee.getDate();
+		this.notes = employee.getNotes();
 	}
 
 
@@ -40,6 +50,34 @@ public class EmployeeModel {
 		this.salary = salary;
 		this.date = date;
 		this.notes = notes;
+	}
+
+
+	public EmployeeModel(String httpOperation,EmployeeModel employee) {
+		super();
+		this.firstName = employee.getFirstName();
+		this.lastName = employee.getLastName();
+	}
+
+
+	public EmployeeModel(Integer id, EmployeeModel employee) {
+		super();
+		this.id = employee.id;
+		this.firstName = employee.getFirstName();
+		this.lastName = employee.getLastName();;
+	}
+
+
+	public EmployeeModel(EmployeeModel employee) {
+		super();
+		this.id = employee.getId();
+		this.firstName = employee.getFirstName();
+		this.lastName = employee.getLastName();
+		this.profilepic = employee.getLastName();
+		this.department = employee.getDepartment();
+		this.salary = employee.getSalary();
+		this.date = employee.getDate();
+		this.notes = employee.getNotes();
 	}
 
 
@@ -91,6 +129,4 @@ public class EmployeeModel {
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-    
-    
 }
