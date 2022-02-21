@@ -12,6 +12,7 @@ public class EmployeepayrollsetupApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EmployeepayrollsetupApplication.class, args);
-		log.info("Employee payroll app started");
+		log.info("Employee payroll app started in {} Enviroment",
+				context.getEnviroment().getProperty("enviroment"));
 	}
 }
