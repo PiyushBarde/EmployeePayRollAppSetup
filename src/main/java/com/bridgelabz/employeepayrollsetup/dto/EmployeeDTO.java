@@ -2,6 +2,13 @@ package com.bridgelabz.employeepayrollsetup.dto;
 
 import java.time.LocalDate;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@Data
+@Getter
+@Setter
 public class EmployeeDTO {
 	private String firstName;
 	private String lastName;
@@ -10,6 +17,8 @@ public class EmployeeDTO {
 	private long salary;
     private LocalDate date;
     private String notes;
+    
+    public EmployeeDTO() {}
    
 	public EmployeeDTO(String firstName, String lastName, String profilepic, String department, long salary,
 			LocalDate date, String notes) {

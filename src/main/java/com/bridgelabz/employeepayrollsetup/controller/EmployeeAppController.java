@@ -1,5 +1,7 @@
 package com.bridgelabz.employeepayrollsetup.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,25 +30,32 @@ public class EmployeeAppController {
 		 return "Welcome to Employee Payroll App";
 	}
 	
+	@GetMapping("/get")
+	public ResponseEntity<String>retriveData(){
+		List<EmployeeModel> listOfEmployee = service.getListOfEmployee();
+		ResponseDTO response = new ResponseDTO("Data of Employees", listOfEmployee);
+		return new ResponseEntity(response,HttpStatus.OK);
+	}
+	
 	@PostMapping("/post")
-	public ResponseEntity<ResponseDTO> welcomeEmployeeAndToDataBase(@RequestBody EmployeeDTO dto) {
-		 ResponseDTO responseDTO = new ResponseDTO("Employee Added : ",service.creatDataBase(dto));
+	public ResponseEntity<ResponseDTO> postData(@RequestBody EmployeeDTO dto) {
+		 ResponseDTO responseDTO = new ResponseDTO("Employee Added : ",service.saveToDB(dto));
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
 	}	
 	
 	@GetMapping("/get/{id}")
-	public ResponseEntity<EmployeeModel> getEmployeeByid(@PathVariable Integer id){
+	public ResponseEntity<EmployeeModel> getDataById(@PathVariable Integer id){
 		return new ResponseEntity<EmployeeModel>(service.findEmployee(id),HttpStatus.OK);
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<ResponseDTO> getEmployeeByid(@PathVariable Integer id,@RequestBody EmployeeDTO dto){
+	public ResponseEntity<ResponseDTO> updateData(@PathVariable Integer id,@RequestBody EmployeeDTO dto){
 		ResponseDTO responseDTO = new ResponseDTO("Employee Updated : ",service.updateEmpolyeeByid(id, dto));
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String deleteEmployeeByid(@PathVariable Integer id){
+	public String daleteData(@PathVariable Integer id){
 		service.deleteEmployee(id);
 		return "Employee data deleted";
 	}

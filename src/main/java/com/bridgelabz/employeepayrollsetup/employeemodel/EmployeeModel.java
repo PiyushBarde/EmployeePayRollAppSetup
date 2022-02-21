@@ -8,8 +8,13 @@ import javax.persistence.Id;
 
 import com.bridgelabz.employeepayrollsetup.dto.EmployeeDTO;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 
 @Entity
+@Data
 public class EmployeeModel {
 	@Id
 	@GeneratedValue
@@ -26,7 +31,6 @@ public class EmployeeModel {
     public EmployeeModel() {
 		super();
 	}
-
     
 	public EmployeeModel(Integer id, EmployeeDTO dto) {
 		super();
@@ -63,7 +67,7 @@ public class EmployeeModel {
 		this.salary = employee.getSalary();
 		this.date = employee.getDate();
 		this.notes = employee.getNotes();
-	}
+	} 
 	public EmployeeModel(EmployeeDTO dto) {
 		super();
 		this.firstName = dto.getFirstName();
@@ -122,5 +126,5 @@ public class EmployeeModel {
 	}
 	public void setNotes(String notes) {
 		this.notes = notes;
-	}
+	} 
 }

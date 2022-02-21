@@ -1,25 +1,32 @@
 package com.bridgelabz.employeepayrollsetup.dto;
 
-import com.bridgelabz.employeepayrollsetup.employeemodel.EmployeeModel;
+import lombok.Data;
 
+@Data
 public class ResponseDTO {
 	private String message;
-	private EmployeeModel content;
-	public String getMessage() {
-		return message;
-	}
-	public void setMessage(String message) {
-		this.message = message;
-	}
-	public EmployeeModel getContent() {
-		return content;
-	}
-	public void setContent(EmployeeModel content) {
-		this.content = content;
-	}
-	public ResponseDTO(String message, EmployeeModel content) {
+	private Object content;
+	
+	public ResponseDTO(String message, Object content) {
 		super();
 		this.message = message;
 		this.content = content;
 	}
+	public ResponseDTO() {}
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public Object getContent() {
+		return content;
+	}
+
+	public void setContent(Object content) {
+		this.content = content;
+	}
+	
 }
