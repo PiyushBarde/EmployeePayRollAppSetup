@@ -22,5 +22,4 @@ public class ResponseDTO {
 		this.message = message;
 		this.content = content;
 	}
-
 }

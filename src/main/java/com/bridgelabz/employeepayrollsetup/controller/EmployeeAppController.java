@@ -44,6 +44,7 @@ public class EmployeeAppController {
 		ResponseDTO responseDTO = new ResponseDTO("Employee Updated : ",service.updateEmpolyeeByid(id, dto));
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
 	}
+	
 	@GetMapping("/delete/{id}")
 	public String deleteEmployeeByid(@PathVariable Integer id){
 		service.deleteEmployee(id);

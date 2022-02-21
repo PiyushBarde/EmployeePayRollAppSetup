@@ -40,7 +40,6 @@ public class EmployeeModel {
 		this.notes = dto.getNotes();
 	}
 
-
 	public EmployeeModel(Integer id, String firstName, String lastName, String profilepic, String department,
 			long salary, LocalDate date, String notes) {
 		super();
@@ -53,7 +52,6 @@ public class EmployeeModel {
 		this.date = date;
 		this.notes = notes;
 	}
-
 
 	public EmployeeModel(EmployeeModel employee) {
 		super();

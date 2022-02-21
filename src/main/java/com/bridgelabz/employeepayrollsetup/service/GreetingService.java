@@ -18,7 +18,6 @@ public class GreetingService {
 		repo.save(newEmployee);
 		return newEmployee;
 	}
-	
 	public String getWelcomeMsg(EmployeeModel employee) {
 		return "Welcome " + employee.getFirstName() + " " + employee.getLastName();
 	}

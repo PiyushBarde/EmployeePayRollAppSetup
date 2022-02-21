@@ -10,9 +10,7 @@ public class EmployeeDTO {
 	private long salary;
     private LocalDate date;
     private String notes;
-    
-    
-    
+   
 	public EmployeeDTO(String firstName, String lastName, String profilepic, String department, long salary,
 			LocalDate date, String notes) {
 		super();
