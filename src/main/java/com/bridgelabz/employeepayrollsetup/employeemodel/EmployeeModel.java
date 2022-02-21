@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.bridgelabz.employeepayrollsetup.dto.EmployeeDTO;
+
 
 @Entity
 public class EmployeeModel {
@@ -26,16 +28,16 @@ public class EmployeeModel {
 	}
 
     
-	public EmployeeModel(Integer id, EmployeeModel employee,String operation) {
+	public EmployeeModel(Integer id, EmployeeDTO dto) {
 		super();
 		this.id = id;
-		this.firstName = employee.getFirstName();
-		this.lastName = employee.getLastName();
-		this.profilepic = employee.getLastName();
-		this.department = employee.getDepartment();
-		this.salary = employee.getSalary();
-		this.date = employee.getDate();
-		this.notes = employee.getNotes();
+		this.firstName = dto.getFirstName();
+		this.lastName = dto.getLastName();
+		this.profilepic = dto.getProfilepic();
+		this.department = dto.getDepartment();
+		this.salary = dto.getSalary();
+		this.date = dto.getDate();
+		this.notes = dto.getNotes();
 	}
 
 
@@ -53,33 +55,27 @@ public class EmployeeModel {
 	}
 
 
-	public EmployeeModel(String httpOperation,EmployeeModel employee) {
-		super();
-		this.firstName = employee.getFirstName();
-		this.lastName = employee.getLastName();
-	}
-
-
-	public EmployeeModel(Integer id, EmployeeModel employee) {
-		super();
-		this.id = employee.id;
-		this.firstName = employee.getFirstName();
-		this.lastName = employee.getLastName();;
-	}
-
-
 	public EmployeeModel(EmployeeModel employee) {
 		super();
 		this.id = employee.getId();
 		this.firstName = employee.getFirstName();
 		this.lastName = employee.getLastName();
-		this.profilepic = employee.getLastName();
+		this.profilepic = employee.getProfilepic();
 		this.department = employee.getDepartment();
 		this.salary = employee.getSalary();
 		this.date = employee.getDate();
 		this.notes = employee.getNotes();
 	}
-
+	public EmployeeModel(EmployeeDTO dto) {
+		super();
+		this.firstName = dto.getFirstName();
+		this.lastName = dto.getLastName();
+		this.profilepic = dto.getProfilepic();
+		this.department = dto.getDepartment();
+		this.salary = dto.getSalary();
+		this.date = dto.getDate();
+		this.notes = dto.getNotes();
+	}
 
 	public Integer getId() {
 		return id;

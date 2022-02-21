@@ -1,10 +1,9 @@
 package com.bridgelabz.employeepayrollsetup.service;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bridgelabz.employeepayrollsetup.dto.EmployeeDTO;
 import com.bridgelabz.employeepayrollsetup.employeemodel.EmployeeModel;
 import com.bridgelabz.employeepayrollsetup.repository.EmployeeAppRepository;
 
@@ -14,9 +13,10 @@ public class GreetingService {
 	@Autowired
 	EmployeeAppRepository repo;
 	
-	public EmployeeModel creatDataBase(EmployeeModel employee) {
-		repo.save(employee);
-		return employee;
+	public EmployeeModel creatDataBase(EmployeeDTO dto) {
+		EmployeeModel newEmployee = new EmployeeModel(dto);
+		repo.save(newEmployee);
+		return newEmployee;
 	}
 	
 	public String getWelcomeMsg(EmployeeModel employee) {
@@ -24,12 +24,13 @@ public class GreetingService {
 	}
 
 	public EmployeeModel findEmployee(Integer id) {
-		Optional<EmployeeModel> newEmployeeModel= repo.findById(id);
-		return newEmployeeModel.get();
+		EmployeeModel newEmployeeModel= repo.getById(id);
+		return newEmployeeModel;
 	}
 
-	public EmployeeModel updateEmpolyeeByid(Integer id, EmployeeModel employee, String string) {
-		EmployeeModel newEmployeeModel = new EmployeeModel(id,employee); 
+	public EmployeeModel updateEmpolyeeByid(Integer id, EmployeeDTO dto) {
+		EmployeeModel newEmployeeModel = new EmployeeModel(id,dto); 
+		repo.save(newEmployeeModel);
 		return newEmployeeModel;
 	}
 
