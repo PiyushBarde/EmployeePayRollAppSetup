@@ -22,18 +22,15 @@ public class GreetingService {
 	public String getWelcomeMsg(EmployeeModel employee) {
 		return "Welcome " + employee.getFirstName() + " " + employee.getLastName();
 	}
-
 	public EmployeeModel findEmployee(Integer id) {
 		EmployeeModel newEmployeeModel= repo.getById(id);
 		return newEmployeeModel;
 	}
-
 	public EmployeeModel updateEmpolyeeByid(Integer id, EmployeeDTO dto) {
 		EmployeeModel newEmployeeModel = new EmployeeModel(id,dto); 
 		repo.save(newEmployeeModel);
 		return newEmployeeModel;
 	}
-
 	public void deleteEmployee(Integer id) {
 		repo.deleteById(id);
 	}
