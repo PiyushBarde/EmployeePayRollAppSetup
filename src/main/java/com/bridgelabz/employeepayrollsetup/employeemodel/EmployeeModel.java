@@ -5,6 +5,11 @@ import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import com.bridgelabz.employeepayrollsetup.dto.EmployeeDTO;
 
@@ -15,15 +20,23 @@ import lombok.Setter;
 
 @Entity
 @Data
+@Getter
+@Setter
 public class EmployeeModel {
 	@Id
 	@GeneratedValue
 	private Integer id;
+	//@Pattern(regexp = "^[A-Z]{1}[a-z A-Z]{1,}",message = "Invalid first name")
 	private String firstName;
+	@Pattern(regexp = "[a-z A-Z]{1,}",message = "Invalid name")
 	private String lastName;
+	
 	private String profilepic;
+	
 	private String department;
+	//@Min(value = 1000,message = "Enter salary more than 1000")
 	private long salary;
+	//@NotNull
     private LocalDate date;
     private String notes;
     
@@ -78,53 +91,4 @@ public class EmployeeModel {
 		this.date = dto.getDate();
 		this.notes = dto.getNotes();
 	}
-
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public String getProfilepic() {
-		return profilepic;
-	}
-	public void setProfilepic(String profilepic) {
-		this.profilepic = profilepic;
-	}
-	public String getDepartment() {
-		return department;
-	}
-	public void setDepartment(String department) {
-		this.department = department;
-	}
-	public long getSalary() {
-		return salary;
-	}
-	public void setSalary(long salary) {
-		this.salary = salary;
-	}
-	public LocalDate getDate() {
-		return date;
-	}
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
-	public String getNotes() {
-		return notes;
-	}
-	public void setNotes(String notes) {
-		this.notes = notes;
-	} 
 }

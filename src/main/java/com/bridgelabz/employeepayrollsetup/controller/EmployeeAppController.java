@@ -2,6 +2,8 @@ package com.bridgelabz.employeepayrollsetup.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +14,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.bridgelabz.employeepayrollsetup.dto.EmployeeDTO;
 import com.bridgelabz.employeepayrollsetup.dto.ResponseDTO;
 import com.bridgelabz.employeepayrollsetup.employeemodel.EmployeeModel;
-import com.bridgelabz.employeepayrollsetup.service.GreetingService;
+import com.bridgelabz.employeepayrollsetup.service.EmployeeService;
 
 
 @RestController
@@ -24,7 +25,7 @@ import com.bridgelabz.employeepayrollsetup.service.GreetingService;
 public class EmployeeAppController {
 	
 	@Autowired
-	GreetingService service;
+	EmployeeService service;
 	@GetMapping("")
 	public String welcomeEmployee() {
 		 return "Welcome to Employee Payroll App";
@@ -38,18 +39,19 @@ public class EmployeeAppController {
 	}
 	
 	@PostMapping("/post")
-	public ResponseEntity<ResponseDTO> postData(@RequestBody EmployeeDTO dto) {
-		 ResponseDTO responseDTO = new ResponseDTO("Employee Added : ",service.saveToDB(dto));
+	public ResponseEntity<ResponseDTO> postData(@Valid @RequestBody EmployeeDTO dto) {
+		 ResponseDTO responseDTO = new ResponseDTO("Employee Added : ",service.saveEmployee(dto));
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
 	}	
 	
 	@GetMapping("/get/{id}")
 	public ResponseEntity<EmployeeModel> getDataById(@PathVariable Integer id){
-		return new ResponseEntity<EmployeeModel>(service.findEmployee(id),HttpStatus.OK);
+		ResponseDTO response = new ResponseDTO("Employee data retrived : ",service.getEmployeeById(id));
+		return new ResponseEntity(response,HttpStatus.OK);
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<ResponseDTO> updateData(@PathVariable Integer id,@RequestBody EmployeeDTO dto){
+	public ResponseEntity<ResponseDTO> updateData(@PathVariable Integer id,@Valid @RequestBody EmployeeDTO dto){
 		ResponseDTO responseDTO = new ResponseDTO("Employee Updated : ",service.updateEmpolyeeByid(id, dto));
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
 	}
